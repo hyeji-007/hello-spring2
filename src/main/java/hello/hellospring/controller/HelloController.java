@@ -1,4 +1,4 @@
-package hello.hello_spring.controller;
+package hello.hellospring.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,5 +25,25 @@ public class HelloController {
     @ResponseBody //http의 body부에 이 데이터를 직접 넣어주겠다.
     public String helloSpring(@RequestParam("name") String name) {
         return "hello " + name;
+    }
+
+    @GetMapping("hello-api")
+    @ResponseBody
+    public Hello helloApi(@RequestParam("name") String name) {
+        Hello hello = new Hello();
+        hello.setName(name);
+        return hello;
+    }
+
+    static class Hello {
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 }
